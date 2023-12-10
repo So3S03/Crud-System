@@ -67,6 +67,7 @@ function search() {
 }
 function delData(index) {
     dataArr.splice(index, 1);
+    localStorage.setItem("proList", JSON.stringify(dataArr))
     displayData()
 }
 function updateData(index) {
