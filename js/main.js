@@ -21,6 +21,7 @@ document.getElementById("addBtn").addEventListener("click", function () {
     dataArr.push(dataObj);
     localStorage.setItem("proList", JSON.stringify(dataArr))
     displayData()
+    clr()
 })
 function displayData() {
     let temp = "";
@@ -38,14 +39,14 @@ function displayData() {
     }
     showData.innerHTML = temp;
 }
-document.getElementById("clr").addEventListener("click", () => {
+function clr() {
     productName.value = "";
     productPrice.value = "";
     productCat.value = "";
     productSale.checked = false;
     productDesc.value = "";
     productCat.value = "Tv";
-})
+}
 function search() {
     let searching = searchInput.value.toLowerCase();
     let temp = "";
@@ -77,4 +78,6 @@ function updateData(index) {
     productCat.value = dataUpdate[0].pCategory;
     productSale.checked = dataUpdate[0].pSale;
     productDesc.value = dataUpdate[0].pDesc;
+    delData();
+    displayData();
 }
