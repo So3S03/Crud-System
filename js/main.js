@@ -71,13 +71,27 @@ function delData(index) {
     localStorage.setItem("proList", JSON.stringify(dataArr))
     displayData()
 }
+let currentIndex;
 function updateData(index) {
+    currentIndex = index;
     let dataUpdate = dataArr.slice(index, index + 1);
     productName.value = dataUpdate[0].pName;
     productPrice.value = dataUpdate[0].productPrice;
     productCat.value = dataUpdate[0].pCategory;
     productSale.checked = dataUpdate[0].pSale;
     productDesc.value = dataUpdate[0].pDesc;
-    delData();
-    displayData();
+    document.querySelector("#addBtn").classList.add("d-none");
+    document.querySelector("#editBtn").classList.remove("d-none");
+
 }
+document.querySelector("#editBtn").addEventListener("click", () => {
+    dataArr[currentIndex].pName = productName.value;
+    dataArr[currentIndex].productPrice = Number(productPrice.value);
+    dataArr[currentIndex].pCategory = productCat.value;
+    dataArr[currentIndex].pSale = productSale.checked;
+    dataArr[currentIndex].pDesc = productDesc.value;
+    displayData()
+    clr();
+    document.querySelector("#addBtn").classList.remove("d-none");
+    document.querySelector("#editBtn").classList.add("d-none");
+})
